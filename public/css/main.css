@@ -1,0 +1,16 @@
+nav
+{
+    background-color: #EB1D36;
+    font-size: 16px;
+}
+footer{
+    background-color: #F5EDDC;
+}
+.container{
+    margin: auto;
+    max-width: 1440px;
+}
+body{
+    padding: 0;
+    margin: 0;
+}
