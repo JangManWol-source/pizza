@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -11,7 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'App\Http\Controllers\PizzaController@index');
+Route::get('/', function(){
+    return view('welcome');
+});
+Route::get('/pizzas', 'App\Http\Controllers\PizzaController@index') ->middleware('auth');
 Route::get('/pizza/create', 'App\Http\Controllers\PizzaController@create');
-Route::get('/pizza/{id}', 'App\Http\Controllers\PizzaController@show');
+Route::get('/pizza/{id}', 'App\Http\Controllers\PizzaController@show') ->middleware('auth');
+Route::post('/pizzas', 'App\Http\Controllers\PizzaController@store');
+Route::delete('/pizza/{id}','App\Http\Controllers\PizzaController@delete') ->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
